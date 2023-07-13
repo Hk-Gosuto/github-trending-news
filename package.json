@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "trending": "tsc && node .\\src\\github-trending.js"
+    "trending": "tsc && node src/actions/github-trending.js"
   },
   "dependencies": {
     "@octokit/action": "^6.0.4",
