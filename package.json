@@ -6,7 +6,8 @@
   "author": "Gosuto",
   "license": "MIT",
   "scripts": {
-    "trending":"tsc && node .\\src\\github-trending.js"
+    "build": "tsc",
+    "trending": "tsc && node .\\src\\github-trending.js"
   },
   "dependencies": {
     "@octokit/action": "^6.0.4",

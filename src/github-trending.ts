@@ -1,9 +1,9 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-// import { Octokit } from '@octokit/action';
+import { Octokit } from '@octokit/action';
 
-// const octokit = new Octokit();
-// const [owner, repo] = process.env.GITHUB_REPOSITORY!.split('/');
+const octokit = new Octokit();
+const [owner, repo] = process.env.GITHUB_REPOSITORY!.split('/');
 
 const fetchData = async () => {
     const list: { href: string | undefined; description: string }[] = [];
@@ -42,8 +42,8 @@ const run = async (date: Date) => {
         body += `- ### [**${item.href!.substring(1)}**](https://github.com${item.href})\n\n`;
         body += `    ${item.description}\n\n`;
     }
-    // const { data } = await octokit.issues.create({ owner, repo, title, body, labels });
-    // console.log(data);
+    const { data } = await octokit.issues.create({ owner, repo, title, body, labels });
+    console.log(data);
 };
 
 run(new Date()).catch((err) => {
