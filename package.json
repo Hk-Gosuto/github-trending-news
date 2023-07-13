@@ -1,0 +1,19 @@
+{
+  "name": "news",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Hk-Gosuto/news",
+  "author": "Gosuto",
+  "license": "MIT",
+  "scripts": {
+    "trending":"tsc && node .\\src\\github-trending.js"
+  },
+  "dependencies": {
+    "@octokit/action": "^6.0.4",
+    "axios": "^1.4.0",
+    "cheerio": "^1.0.0-rc.12"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.2"
+  }
+}
