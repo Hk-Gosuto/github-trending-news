@@ -39,7 +39,7 @@ const run = async (date: Date) => {
     let labels = ['github'];
     let body = '';
     for (let item of res) {
-        body += `- ### [**${item.href!.substring(1)}**](https://github.com${item.href})\n\n`;
+        body += `- ### [**${item.href!.substring(1)}**](${item.href})\n\n`;
         body += `    ${item.description}\n\n`;
     }
     const { data } = await octokit.issues.create({ owner, repo, title, body, labels });
