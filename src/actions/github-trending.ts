@@ -1,8 +1,7 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-
-const telegramToken = process.env.TELEGRAM_TOKEN!;
-const telegramChannelId = process.env.TELEGRAM_CHANNEL_ID!;
+import { sendMessage } from '../utils/telegramApi';
+import { Translate } from '../utils/volcTranslate';
 
 const fetchData = async () => {
     const list: { title: string | undefined, href: string | undefined; description: string }[] = [];
@@ -32,13 +31,6 @@ const fetchData = async () => {
     return list;
 };
 
-const sendMessage = async (text: string) => {
-    const url = `https://api.telegram.org/bot${telegramToken}/` + 'sendMessage';
-    const data = { chat_id: telegramChannelId, text, parse_mode: 'markdown' };
-    const response = await axios.post(url, data);
-    return response.data;
-}
-
 const run = async (date: Date) => {
     console.log(date);
     let res = await fetchData();
@@ -48,6 +40,10 @@ const run = async (date: Date) => {
     for (let item of res) {
         body += `[${item.title}](${item.href})\n\n`;
         body += `${item.description}\n\n`;
+        if (item.description) {
+            let descriptionCN = await Translate(item.description);
+            body += `${descriptionCN}\n\n`;
+        }
     }
     await sendMessage(body).then(console.log).catch(console.error);
 };
