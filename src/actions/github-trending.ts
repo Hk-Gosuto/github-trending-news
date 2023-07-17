@@ -53,7 +53,7 @@ const run = async (date: Date) => {
     const maxCharacters = 4096;
     let title = date.toISOString().substring(0, 10) + ' Github Trending';
     let partIndex = 1;
-    let body = `## ${title} Part ${partIndex}\n`;
+    let body = `${title} Part ${partIndex}\n`;
     for (let item of res) {
         let tempBody = '';
         tempBody += `[${item.title}](${item.href})\n`;
@@ -66,7 +66,7 @@ const run = async (date: Date) => {
         tempBody += '\n';
         if ((body.length + tempBody.length) > (maxCharacters - 500)) {
             await sendMessage(body).then(console.log).catch(console.error);
-            body = `## ${title} Part ${++partIndex}\n`;
+            body = `${title} Part ${++partIndex}\n`;
         }
         else {
             body += tempBody;
