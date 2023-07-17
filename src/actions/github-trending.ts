@@ -35,14 +35,25 @@ const run = async (date: Date) => {
     console.log(date);
     let res = await fetchData();
     console.log(res);
+    const maxCharacters = 4096;
     let title = date.toISOString().substring(0, 10) + ' Github Trending';
-    let body = `${title}\n\n`;
+    let partIndex = 1;
+    let body = `${title} Part ${partIndex}\n\n`;
     for (let item of res) {
-        body += `[${item.title}](${item.href})\n\n`;
-        body += `${item.description}\n\n`;
+        let tempBody = '';
+        tempBody += `[${item.title}](${item.href})\n\n`;
+        tempBody += `${item.description}\n\n`;
         if (item.description) {
             let descriptionCN = await Translate(item.description);
-            body += `${descriptionCN}\n\n`;
+            tempBody += `${descriptionCN}\n\n`;
+        }
+        if ((body.length + tempBody.length) > (maxCharacters - 500)) {
+            await sendMessage(body).then(console.log).catch(console.error);
+            body = `${title} Part ${partIndex}\n\n`;
+            partIndex++;
+        }
+        else {
+            body += tempBody;
         }
     }
     await sendMessage(body).then(console.log).catch(console.error);
