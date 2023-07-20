@@ -1,0 +1,20 @@
+name: Telegram Notification
+on:
+  issues:
+    types: [opened]
+jobs:
+  send-to-telegram:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.login == '<owner>'
+    steps:
+    - name: Send message to Telegram
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        format: 'markdown'
+        message: ${GITHUB_EVENT_ISSUE_BODY}
+    - name: Close Issue
+      run: gh issue close --comment "Auto-closing issue" "${{ github.event.issue.number }}"
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
