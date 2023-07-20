@@ -57,7 +57,7 @@ const run = async (date: Date) => {
     for (let item of res) {
         let tempBody = '';
         tempBody += `[${item.title}](${item.href})\n`;
-        tempBody += `🧰: ${item.language} 🌟: ${item.star} 🔀: ${item.fork}\n`;
+        tempBody += `💻: ${item.language} 🌟: ${item.star} 🔀: ${item.fork}\n`;
         if (item.description) {
             tempBody += `💬: ${item.description}\n`;
             let descriptionCN = await Translate(item.description);
