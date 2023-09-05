@@ -1,10 +1,11 @@
 import { Service } from '@volcengine/openapi';
 import { ResponseMetadata } from '@volcengine/openapi/lib/services/acep/types';
+import 'dotenv/config';
 
 const accessKeyId = process.env.VOLC_ACCESS_KEY_ID!;
 const secretKey = process.env.VOLC_SECRET_KEY!;
 
-export async function Translate(text: string, sourceLanguage: string = 'en', targetLanguage: string = 'zh') {
+export async function Translate(text: string, sourceLanguage: string | undefined = undefined, targetLanguage: string = 'zh') {
     const postBody = {
         SourceLanguage: sourceLanguage,
         TargetLanguage: targetLanguage,

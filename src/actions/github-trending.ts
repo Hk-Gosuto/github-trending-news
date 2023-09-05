@@ -64,7 +64,7 @@ const run = async (date: Date) => {
             tempBody += `🇨🇳: ${descriptionCN}\n`;
         }
         tempBody += '\n';
-        if ((body.length + tempBody.length) > (maxCharacters - 500)) {
+        if (stringLength(body + tempBody) > (maxCharacters - 500)) {
             await sendMessage(body).then(console.log).catch(console.error);
             body = `${title} Part ${++partIndex}\n`;
         }
@@ -74,6 +74,19 @@ const run = async (date: Date) => {
     }
     await sendMessage(body).then(console.log).catch(console.error);
 };
+
+const stringLength = (str: string): number => {
+    let length = 0;
+    for (let i = 0; i < str.length; i++) {
+        const char = str.charAt(i);
+        if (/[\u4e00-\u9fa5]/.test(char)) {
+            length += 2;
+        } else {
+            length += 1;
+        }
+    }
+    return length;
+}
 
 run(new Date()).catch((err) => {
     throw err;

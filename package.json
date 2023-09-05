@@ -1,8 +1,8 @@
 {
-  "name": "news",
+  "name": "github-trending-news",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/Hk-Gosuto/news",
+  "repository": "https://github.com/Hk-Gosuto/github-trending-news",
   "author": "Gosuto",
   "license": "MIT",
   "scripts": {
@@ -13,9 +13,11 @@
     "@octokit/action": "^6.0.4",
     "@volcengine/openapi": "^1.10.0",
     "axios": "^1.4.0",
-    "cheerio": "^1.0.0-rc.12"
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.3.1"
   },
   "devDependencies": {
+    "@types/dotenv": "^8.2.0",
     "@types/node": "^20.4.2"
   }
 }

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import 'dotenv/config';
 
 const telegramToken = process.env.TELEGRAM_TOKEN!;
 const telegramChannelId = process.env.TELEGRAM_CHANNEL_ID!;
