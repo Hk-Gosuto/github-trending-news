@@ -20,19 +20,19 @@ const fetchData = async () => {
             const $repoList = $('.Box .Box-row');
             $repoList.each((a, b) => {
                 const repoTitleA = $(b).find('>h2>a');
-                const repoTitle = repoTitleA.text().replace(/\n/g, '').replace(/ /g, '').trim();
+                const repoTitle = repoTitleA.text().replace(/\n/g, '').replace(/ /g, '').replace(/[^\u0000-\u007F]/g, '').trim();
                 const repoHref = repoTitleA.attr('href');
                 const repoLanguageSpan = $(b).find('>div').last().find('>span>span').last();
                 const repoLanguage = repoLanguageSpan.text().trim();
                 const repoStar = $(b).find('>div').last().find('>a').first().text().trim();
                 const repoFork = $(b).find('>div').last().find('>a').last().text().trim();
 
-                const repoDesc = $(b).find('>p').text().replace(/\n/g, '').trim();
+                const repoDesc = $(b).find('>p').text().replace(/\n/g, '').replace(/\"/g, "'").replace(/[^\u0000-\u007F]/g, '').trim();
                 list.push({
-                    title: repoTitle,
+                    title: markdownFormat(repoTitle),
                     href: `https://github.com${repoHref}`,
-                    description: repoDesc,
-                    language: repoLanguage,
+                    description: markdownFormat(repoDesc),
+                    language: markdownFormat(repoLanguage),
                     star: repoStar,
                     fork: repoFork
                 });
@@ -91,3 +91,15 @@ const stringLength = (str: string): number => {
 run(new Date()).catch((err) => {
     throw err;
 });
+
+const markdownFormat = (str: string): string => {
+    return str.replace(/\*/g, '\\*')
+        .replace(/\~/g, '\\~')
+        .replace(/\`/g, '\\`')
+        .replace(/\>/g, '\\>')
+        .replace(/\#/g, '\\#')
+        .replace(/\=/g, '\\=')
+        .replace(/\|/g, '\\|')
+        .replace(/\{/g, '\\{')
+        .replace(/\}/g, '\\}');
+}
