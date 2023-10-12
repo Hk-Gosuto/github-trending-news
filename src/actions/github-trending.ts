@@ -97,9 +97,9 @@ const markdownFormat = (str: string): string => {
         .replace(/\~/g, '\\~')
         .replace(/\`/g, '\\`')
         .replace(/\>/g, '\\>')
-        .replace(/\#/g, '\\#')
+        // .replace(/\#/g, '\\#')
         .replace(/\=/g, '\\=')
-        .replace(/\|/g, '\\|')
+        // .replace(/\|/g, '\\|')
         .replace(/\{/g, '\\{')
         .replace(/\}/g, '\\}');
 }
