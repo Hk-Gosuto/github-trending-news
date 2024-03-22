@@ -68,9 +68,7 @@ const run = async (date: Date) => {
             await sendMessage(body).then(console.log).catch(console.error);
             body = `${title} Part ${++partIndex}\n`;
         }
-        else {
-            body += tempBody;
-        }
+        body += tempBody;
     }
     await sendMessage(body).then(console.log).catch(console.error);
 };
