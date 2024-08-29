@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 import { sendMessage } from '../utils/telegramApi';
-import { Translate } from '../utils/volcTranslate';
+import { Translator } from '../utils/glmTranslate';
 
 const fetchData = async () => {
     const list: {
@@ -60,7 +60,8 @@ const run = async (date: Date) => {
         tempBody += `💻: ${item.language} 🌟: ${item.star} 🔀: ${item.fork}\n`;
         if (item.description) {
             tempBody += `💬: ${item.description}\n`;
-            let descriptionCN = await Translate(item.description);
+            const translator = new Translator();
+            let descriptionCN = await translator.translate(item.description);
             tempBody += `🇨🇳: ${descriptionCN}\n`;
         }
         tempBody += '\n';
