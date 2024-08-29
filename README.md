@@ -5,7 +5,8 @@
 ## 主要功能
 
 - 每天 12:10 PM（北京时间） 推送当日 GitHub Trending 列表
-- 使用 [火山翻译](https://translate.volcengine.com/api) 将项目描述翻译为中文
+- ~~使用 [火山翻译](https://translate.volcengine.com/api) 将项目描述翻译为中文~~
+- 使用 glm-4 将项目描述翻译为中文
 
 ## 计划
 

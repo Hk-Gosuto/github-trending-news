@@ -39,7 +39,7 @@ export class Translator {
     }
 
     private constructPrompt(text: string, sourceLanguage: string | undefined, targetLanguage: string): string {
-        let prompt = `You are a professional translator.\n\nOnly reply the result and nothing else. Please translate to ${targetLanguage}:\n\n`;
+        let prompt = `You are a professional translator.\n\nUrl does not require translation.\n\nOnly reply the result and nothing else. Please translate to ${targetLanguage}:\n\n`;
         prompt += `"${text}"`;
         return prompt;
     }
