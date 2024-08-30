@@ -24,3 +24,5 @@ jobs:
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           VOLC_ACCESS_KEY_ID: ${{ secrets.VOLC_ACCESS_KEY_ID }}
           VOLC_SECRET_KEY: ${{ secrets.VOLC_SECRET_KEY }}
+          GLM_MODEL: ${{ secrets.GLM_MODEL }}
+          GLM_API_KEY: ${{ secrets.GLM_API_KEY }}
