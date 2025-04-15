@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 import { sendMessage } from '../utils/telegramApi';
-import { Translator } from '../utils/glmTranslate';
+import { Translator } from '../utils/llmTranslate';
 
 const fetchData = async () => {
     const list: {
