@@ -12,7 +12,7 @@ import { createXai } from '@ai-sdk/xai'
 const modelName = process.env.MODEL_NAME!;
 const provider = process.env.AI_PROVIDER ?? "openai";
 const apiKey = process.env.AI_API_KEY!;
-const baseURL = process.env.AI_BASE_URL;
+const baseURL = process.env.AI_BASE_URL?.trim() ? process.env.AI_BASE_URL : undefined;
 
 type AIProviderFactory = (options: { apiKey: string; baseURL?: string }) => (modelName: string) => LanguageModelV1;
 
