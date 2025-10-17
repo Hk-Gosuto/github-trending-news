@@ -20,7 +20,7 @@
     "@octokit/action": "^6.0.4",
     "@volcengine/openapi": "^1.10.0",
     "ai": "^4.3.6",
-    "axios": "^1.8.2",
+    "axios": "^1.12.0",
     "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.3.1",
     "typescript": "^5.5.4",
