@@ -2,16 +2,12 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 import { sendMessage } from '../utils/telegramApi';
 import { Translator } from '../utils/llmTranslate';
+import { DatabaseManager } from '../utils/database';
+import { DuplicateFilter } from '../utils/duplicateFilter';
+import { GitHubTrendingItem } from '../utils/supabaseClient';
 
-const fetchData = async () => {
-    const list: {
-        title: string | undefined,
-        href: string | undefined,
-        language: string | undefined,
-        star: string | undefined,
-        fork: string | undefined,
-        description: string
-    }[] = [];
+const fetchData = async (): Promise<GitHubTrendingItem[]> => {
+    const list: GitHubTrendingItem[] = [];
     try {
         console.log('start fetching list');
         let res = await axios.get('https://github.com/trending');
@@ -50,6 +46,22 @@ const run = async (date: Date) => {
     console.log(date);
     let res = await fetchData();
     console.log(res);
+
+    // Initialize database manager and duplicate filter
+    const db = new DatabaseManager();
+    const duplicateFilter = new DuplicateFilter();
+    const trendDate = date.toISOString().substring(0, 10);
+
+    console.log('🔍 Filtering for new trending repositories...');
+    const newTrendingItems = await duplicateFilter.filterNewTrending(res, trendDate);
+
+    if (newTrendingItems.length === 0) {
+        console.log('📝 No new trending repositories to process.');
+    } else {
+        console.log(`📊 Storing ${newTrendingItems.length} new trending repositories to Supabase...`);
+        await db.processTrendingData(newTrendingItems, trendDate);
+    }
+
     const maxCharacters = 4096;
     let title = date.toISOString().substring(0, 10) + ' Github Trending';
     let partIndex = 1;

@@ -11,6 +11,7 @@
 
 ## 配置
 
+### AI 模型配置
 - MODEL_NAME
   - 指定 ai 模型名称
 - AI_PROVIDER (可选)
@@ -19,15 +20,23 @@
   - ai api key
 - AI_BASE_URL (可选)
   - ai base url
+
+### Telegram 配置
 - TELEGRAM_TOKEN
   - telegram token
 - TELEGRAM_CHANNEL_ID
   - telegram channel id
 
+### Supabase 配置
+- SUPABASE_URL
+  - Supabase 项目 URL，例如：https://your-project.supabase.co
+- SUPABASE_ANON_KEY
+  - Supabase 匿名访问密钥
+
 ## 计划
 
 - [x] 对接 telegram 机器人推送
 - [x] 对接 火山翻译 引擎
-- [ ] 对接 supabase 数据持久化
+- [x] 对接 supabase 数据持久化
 - [ ] 使用 supabase 过滤重复历史推送项目
 - [ ] 对接 openai 对 start 最高的几个项目编写每日总结
