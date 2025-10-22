@@ -2,7 +2,7 @@ name: github-trending
 
 on:
   schedule:
-  - cron: "00 4 * * *"
+    - cron: "00 4 * * *"
   workflow_dispatch:
 
 jobs:
@@ -26,3 +26,5 @@ jobs:
           AI_PROVIDER: ${{ secrets.AI_PROVIDER }}
           AI_API_KEY: ${{ secrets.AI_API_KEY }}
           AI_BASE_URL: ${{ secrets.AI_BASE_URL }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
